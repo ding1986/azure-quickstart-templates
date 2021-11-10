@@ -2,7 +2,7 @@ variables:
   ARM_PASS: $(adminPass)
 
 trigger:
-- none dzf_pipe_azure_con
+- none 
 
 pool:
   vmImage: ubuntu-latest
@@ -17,13 +17,13 @@ steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: '<your-resource-manager-connection>'
-    subscriptionId: '<your-subscription-id>'
+    azureResourceManagerConnection: 'dzf_pipe_azure_con'
+    subscriptionId: 'd41ec4e7-5694-40d1-a55b-2a245d12e7b0'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'ARMPipelinesLAMP-rg'
-    location: '<your-closest-location>'
+    resourceGroupName: 'dzf_pipe_azure_testrg'
+    location: 'East US'
     templateLocation: 'Linked artifact'
+    deploymentMode: 'Incremental'
     csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
     csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
     overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
-    deploymentMode: 'Incremental'
