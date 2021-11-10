@@ -1,0 +1,6 @@
+trigger:
+- none dzf_pipe_azure_con
+
+pool:
+  vmImage: ubuntu-latest
+
