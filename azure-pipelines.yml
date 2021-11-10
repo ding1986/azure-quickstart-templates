@@ -1,3 +1,6 @@
+variables:
+  ARM_PASS: $(adminPass)
+
 trigger:
 - none dzf_pipe_azure_con
 
